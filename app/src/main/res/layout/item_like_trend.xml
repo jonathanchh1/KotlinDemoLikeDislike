@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="profile"
+                type="com.emi.testlikebutton.LikeViewModel"
+        />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="100dp"
+                  android:gravity="center_vertical"
+                  android:orientation="horizontal"
+                  android:paddingLeft="20dp"
+                  android:paddingRight="20dp">
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <ImageView
+                    android:id="@+id/iv_player_icon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/colorGoldenLight"
+                    bind:srcCompat="@{profile.icon}"
+            />
+        </FrameLayout>
+
+        <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1">
+
+
+            <TextView
+                    android:id="@+id/tv_like_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(profile.likes())}"
+                    android:textColor="@color/colorGolden"
+                    android:textSize="40sp" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_like_number"
+                    android:layout_toRightOf="@id/tv_like_number"
+                    android:text="@string/support_number"
+                    android:textColor="@color/colorGolden"
+                    android:textSize="8sp" />
+
+            <TextView
+                    android:id="@+id/tv_player_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:includeFontPadding="false"
+                    android:text="@{profile.name}"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+
+
+        </RelativeLayout>
+
+
+            <FrameLayout
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/frameLayout"
+                    android:layout_marginStart="5dp">
+
+                <Button
+                        android:layout_width="wrap_content"
+                        android:id="@+id/bt_like"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="end|center_vertical"
+                        android:background="@android:color/holo_red_light"
+                        android:text="@string/support_bt"
+                        android:onClick="@{() -> profile.onLike()}"
+                        android:textColor="@android:color/white"
+                        android:textSize="13sp"
+                />
+
+            </FrameLayout>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:id="@+id/bt_dislike"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end|center_vertical"
+                android:background="@android:color/holo_red_light"
+                android:text="@string/dislike"
+                android:onClick="@{() -> profile.onDislike()}"
+                android:textColor="@android:color/white"
+
+                android:textSize="13sp"
+        />
+    </LinearLayout>
+</layout>
